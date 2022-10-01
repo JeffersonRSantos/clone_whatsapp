@@ -1,0 +1,836 @@
+<%- include('./components/head') %>
+    <nav class="navbar navbar-dark sticky-top flex-md-nowrap p-0 header_top_main">
+        <a style="border-right: 1px solid rgba(134,150,160,0.15);" class="navbar-brand col-md-4 col-lg-3 mr-0" href="#">
+            <div class="d-flex justify-content-between align-items-center">
+                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                <div class="d-flex align-items-center justify-content-center">
+                    <div>
+                        <span class="svg_type_btn d-flex align-items-center justify-content-center">
+                            <svg version="1.1" id="df9d3429-f0ef-48b5-b5eb-f9d27b2deba6" x="0" y="0" viewBox="0 0 24 24"
+                                width="24" height="24" class="">
+                                <path fill="#aebac1"
+                                    d="M12.072 1.761a10.05 10.05 0 0 0-9.303 5.65.977.977 0 0 0 1.756.855 8.098 8.098 0 0 1 7.496-4.553.977.977 0 1 0 .051-1.952zM1.926 13.64a10.052 10.052 0 0 0 7.461 7.925.977.977 0 0 0 .471-1.895 8.097 8.097 0 0 1-6.012-6.386.977.977 0 0 0-1.92.356zm13.729 7.454a10.053 10.053 0 0 0 6.201-8.946.976.976 0 1 0-1.951-.081v.014a8.097 8.097 0 0 1-4.997 7.209.977.977 0 0 0 .727 1.813l.02-.009z">
+                                </path>
+                                <path fill="#009588" d="M19 1.5a3 3 0 1 1 0 6 3 3 0 0 1 0-6z"></path>
+                            </svg>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="svg_type_btn d-flex align-items-center justify-content-center">
+                            <svg viewBox="0 0 24 24" width="24" height="24" class="">
+                                <path fill="#aebac1"
+                                    d="M19.005 3.175H4.674C3.642 3.175 3 3.789 3 4.821V21.02l3.544-3.514h12.461c1.033 0 2.064-1.06 2.064-2.093V4.821c-.001-1.032-1.032-1.646-2.064-1.646zm-4.989 9.869H7.041V11.1h6.975v1.944zm3-4H7.041V7.1h9.975v1.944z">
+                                </path>
+                            </svg>
+                        </span>
+                    </div>
+                    <div>
+                        <span class="svg_type_btn d-flex align-items-center justify-content-center" id="more_options">
+                            <svg viewBox="0 0 24 24" width="24" height="24" class="">
+                                <path fill="#aebac1"
+                                    d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z">
+                                </path>
+                            </svg>
+                            <div class="action_menu">
+                                <ul class="ul-inline p-0 m-0">
+                                    <li onclick="logout()"><i class="fas fa-ban"></i> Sair</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </a>
+        <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-toggle="collapse"
+            data-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="w-100" id="container_header_chat">
+            <div class="d-flex pl-3 w-100 justify-content-start align-items-center">
+                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                <span class="pl-3 username_title"></span>
+            </div>
+            <div class="navbar-nav px-3 align-items-center justify-content-center" id="options_header">
+                <a class="nav-item text-nowrap">
+                    <div class="d-flex align-items-center justify-content-center">
+                        <span id="icon_call_video" class="svg_type_btn"></span>
+                        <span id="icon_call_voice" class="svg_type_btn"></span>
+                        <span class="svg_type_btn" id="menu_friend">
+                            <svg viewBox="0 0 24 24" width="24" height="24" class="">
+                                <path fill="#aebac1"
+                                    d="M12 7a2 2 0 1 0-.001-4.001A2 2 0 0 0 12 7zm0 2a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 9zm0 6a2 2 0 1 0-.001 3.999A2 2 0 0 0 12 15z">
+                                </path>
+                            </svg>
+                            <div class="action_menu">
+                                <ul class="ul-inline p-0 m-0">
+                                    <li onclick="logout()"><i class="fas fa-ban"></i> Sair</li>
+                                </ul>
+                            </div>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid p-0 m-0">
+        <div class="row p-0 m-0 bg-v1">
+            <nav id="sidebarMenu" class="col-md-4 col-lg-3 d-md-block bg-light p-0 m-0 sidebar collapse">
+                <div class="loading">
+                    <div class="spinner-grow text-light" role="status">
+                        <span class="sr-only">Loading...</span>
+                    </div>
+                    <p style="color:#e9edef;" class="pl-2 p-0 m-0">Buscando contatos...</p>
+                </div>
+
+                <div class="sidebar-sticky p-0 m-0">
+                    <div class="row p-0 m-0">
+                        <div class="col-12 p-0 m-0" id="container_input_search">
+                            <div class="row d-flex align-items-center py-2 p-0 m-0">
+                                <div class="col-10 w-100 p-0 pl-3 pr-2 m-0">
+                                    <div class="input-group input_search_username">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text" id="basic-addon1"><svg viewBox="0 0 24 24"
+                                                    width="24" height="24" class="">
+                                                    <path fill="#8696a0"
+                                                        d="M15.009 13.805h-.636l-.22-.219a5.184 5.184 0 0 0 1.256-3.386 5.207 5.207 0 1 0-5.207 5.208 5.183 5.183 0 0 0 3.385-1.255l.221.22v.635l4.004 3.999 1.194-1.195-3.997-4.007zm-4.808 0a3.605 3.605 0 1 1 0-7.21 3.605 3.605 0 0 1 0 7.21z">
+                                                    </path>
+                                                </svg></span>
+                                        </div>
+                                        <input type="text" class="pl-0 form-control search_username"
+                                            placeholder="Pesquisar ou começar uma nova conversa" name="search_username"
+                                            aria-label="Username" aria-describedby="basic-addon1">
+                                    </div>
+                                </div>
+                                <div class="col-2 p-0 m-0 text-center">
+                                    <span class="svg_type_btn">
+                                        <svg viewBox="0 0 24 24" width="20" height="20">
+                                            <path fill="#8696a0"
+                                                d="M10 18.1h4v-2h-4v2zm-7-12v2h18v-2H3zm3 7h12v-2H6v2z"></path>
+                                        </svg>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <ul class="ul-inline p-0 m-0 contacts">
+                        <!-- <li class="content_contacts">
+                <div class="px-3">
+                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col content_message_contacts">
+                        <div class="row p-0 m-0">
+                            <div class="col-9 p-0 m-0 text-left">
+                                <span class="title_contacts">Jefferson</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row p-0 m-0">
+                            <div class="col-9 p-0 m-0 text-left">
+                                <p class="p-0 m-0 message_new_contact">Envie uma mensagem.</p>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </li>
+            <li class="content_contacts">
+                <div class="px-3">
+                    <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                </div>
+                <div class="row align-items-center">
+                    <div class="col content_message_contacts">
+                        <div class="row p-0 m-0">
+                            <div class="col-9 p-0 m-0 text-left">
+                                <span class="title_contacts">Jefferson</span>
+                            </div>
+                            <div class="col-2 p-0 m-0 text-right">
+                                <span class="title_contacts_hours">18:00</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="row p-0 m-0">
+                            <div class="col-9 p-0 m-0 text-left">
+                                <p class="p-0 m-0 contacts_message">Olá fulano, vc tem uma nova mensagem asdasdasd</p>
+                            </div>
+                            <div class="col-2 d-flex justify-content-end p-0 m-0">
+                                <div class="notification_new_message text-center d-flex align-items-center">
+                                    <span class="w-100">10</span>
+                                </div>
+                            </div>
+                        </div>                        
+                    </div>
+                </div>
+            </li> -->
+                    </ul>
+
+                </div>
+            </nav>
+
+            <main role="main" class="col-md-8 col-lg-9 p-0 m-0 welcome_container">
+                <div class="wrapper">
+                    <article class="d-flex align-items-center flex-column justify-content-center px-5 p-0 m-0">
+                        <svg width="360" viewBox="0 0 303 172" fill="none" class="#aebac1">
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M229.565 160.229c32.647-10.984 57.366-41.988 53.825-86.81-5.381-68.1-71.025-84.993-111.918-64.932C115.998 35.7 108.972 40.16 69.239 40.16c-29.594 0-59.726 14.254-63.492 52.791-2.73 27.933 8.252 52.315 48.89 64.764 73.962 22.657 143.38 13.128 174.928 2.513Z"
+                                fill="#364147"></path>
+                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                d="M131.589 68.942h.01c6.261 0 11.336-5.263 11.336-11.756S137.86 45.43 131.599 45.43c-5.081 0-9.381 3.466-10.822 8.242a7.302 7.302 0 0 0-2.404-.405c-4.174 0-7.558 3.51-7.558 7.838s3.384 7.837 7.558 7.837h13.216ZM105.682 128.716c3.504 0 6.344-2.808 6.344-6.27 0-3.463-2.84-6.27-6.344-6.27-1.156 0-2.24.305-3.173.839v-.056c0-6.492-5.326-11.756-11.896-11.756-5.29 0-9.775 3.413-11.32 8.132a8.025 8.025 0 0 0-2.163-.294c-4.38 0-7.93 3.509-7.93 7.837 0 4.329 3.55 7.838 7.93 7.838h28.552Z"
+                                fill="#F1F1F2" fill-opacity=".38"></path>
+                            <rect x=".445" y=".55" width="50.58" height="100.068" rx="7.5"
+                                transform="rotate(6 -391.775 121.507) skewX(.036)" fill="#42CBA5" stroke="#316474">
+                            </rect>
+                            <rect x=".445" y=".55" width="50.403" height="99.722" rx="7.5"
+                                transform="rotate(6 -356.664 123.217) skewX(.036)" fill="#EEFAF6" stroke="#316474">
+                            </rect>
+                            <path
+                                d="m57.16 51.735-8.568 82.024a5.495 5.495 0 0 1-6.042 4.895l-32.97-3.465a5.504 5.504 0 0 1-4.897-6.045l8.569-82.024a5.496 5.496 0 0 1 6.041-4.895l5.259.553 22.452 2.36 5.259.552a5.504 5.504 0 0 1 4.898 6.045Z"
+                                fill="#DFF3ED" stroke="#316474"></path>
+                            <path
+                                d="M26.2 102.937c.863.082 1.732.182 2.602.273.238-2.178.469-4.366.69-6.546l-2.61-.274c-.238 2.178-.477 4.365-.681 6.547Zm-2.73-9.608 2.27-1.833 1.837 2.264 1.135-.917-1.838-2.266 2.27-1.833-.92-1.133-2.269 1.834-1.837-2.264-1.136.916 1.839 2.265-2.27 1.835.92 1.132Zm-.816 5.286c-.128 1.3-.265 2.6-.41 3.899.877.109 1.748.183 2.626.284.146-1.31.275-2.614.413-3.925-.878-.092-1.753-.218-2.629-.258Zm16.848-8.837c-.506 4.801-1.019 9.593-1.516 14.396.88.083 1.748.192 2.628.267.496-4.794 1-9.578 1.513-14.37-.864-.143-1.747-.192-2.625-.293Zm-4.264 2.668c-.389 3.772-.803 7.541-1.183 11.314.87.091 1.74.174 2.601.273.447-3.912.826-7.84 1.255-11.755-.855-.15-1.731-.181-2.589-.306-.04.156-.069.314-.084.474Zm-4.132 1.736c-.043.159-.06.329-.077.49-.297 2.896-.617 5.78-.905 8.676l2.61.274c.124-1.02.214-2.035.33-3.055.197-2.036.455-4.075.627-6.115-.863-.08-1.724-.17-2.585-.27Z"
+                                fill="#316474"></path>
+                            <path
+                                d="M17.892 48.489a1.652 1.652 0 0 0 1.468 1.803 1.65 1.65 0 0 0 1.82-1.459 1.652 1.652 0 0 0-1.468-1.803 1.65 1.65 0 0 0-1.82 1.459ZM231.807 136.678l-33.863 2.362c-.294.02-.54-.02-.695-.08a.472.472 0 0 1-.089-.042l-.704-10.042a.61.61 0 0 1 .082-.054c.145-.081.383-.154.677-.175l33.863-2.362c.294-.02.54.02.695.08.041.016.069.03.088.042l.705 10.042a.61.61 0 0 1-.082.054 1.678 1.678 0 0 1-.677.175Z"
+                                fill="#fff" stroke="#316474"></path>
+                            <path
+                                d="m283.734 125.679-138.87 9.684c-2.87.2-5.371-1.963-5.571-4.823l-6.234-88.905c-.201-2.86 1.972-5.35 4.844-5.55l138.87-9.684c2.874-.2 5.371 1.963 5.572 4.823l6.233 88.905c.201 2.86-1.971 5.349-4.844 5.55Z"
+                                fill="#EEFAF6"></path>
+                            <path
+                                d="M144.864 135.363c-2.87.2-5.371-1.963-5.571-4.823l-6.234-88.905c-.201-2.86 1.972-5.35 4.844-5.55l138.87-9.684c2.874-.2 5.371 1.963 5.572 4.823l6.233 88.905c.201 2.86-1.971 5.349-4.844 5.55"
+                                stroke="#316474"></path>
+                            <path
+                                d="m278.565 121.405-129.885 9.058c-2.424.169-4.506-1.602-4.668-3.913l-5.669-80.855c-.162-2.31 1.651-4.354 4.076-4.523l129.885-9.058c2.427-.169 4.506 1.603 4.668 3.913l5.669 80.855c.162 2.311-1.649 4.354-4.076 4.523Z"
+                                fill="#DFF3ED" stroke="#316474"></path>
+                            <path
+                                d="m230.198 129.97 68.493-4.777.42 5.996c.055.781-.098 1.478-.363 1.972-.27.5-.611.726-.923.748l-165.031 11.509c-.312.022-.681-.155-1.017-.613-.332-.452-.581-1.121-.636-1.902l-.42-5.996 68.494-4.776c.261.79.652 1.483 1.142 1.998.572.6 1.308.986 2.125.929l24.889-1.736c.817-.057 1.491-.54 1.974-1.214.413-.577.705-1.318.853-2.138Z"
+                                fill="#42CBA5" stroke="#316474"></path>
+                            <path
+                                d="m230.367 129.051 69.908-4.876.258 3.676a1.51 1.51 0 0 1-1.403 1.61l-168.272 11.735a1.51 1.51 0 0 1-1.613-1.399l-.258-3.676 69.909-4.876a3.323 3.323 0 0 0 3.188 1.806l25.378-1.77a3.32 3.32 0 0 0 2.905-2.23Z"
+                                fill="#EEFAF6" stroke="#316474"></path>
+                            <circle transform="rotate(-3.989 1304.861 -2982.552) skewX(.021)" fill="#42CBA5"
+                                stroke="#316474" r="15.997"></circle>
+                            <path
+                                d="m208.184 87.11-3.407-2.75-.001-.002a1.952 1.952 0 0 0-2.715.25 1.89 1.89 0 0 0 .249 2.692l.002.001 5.077 4.11v.001a1.95 1.95 0 0 0 2.853-.433l8.041-12.209a1.892 1.892 0 0 0-.573-2.643 1.95 1.95 0 0 0-2.667.567l-6.859 10.415Z"
+                                fill="#fff" stroke="#316474"></path>
+                        </svg>
+                        <div class="text-center pt-4">
+                            <h1 class="title_welcome">WhatsApp Web</h1>
+                            <p class="description_welcome">Envie e receba mensagens sem precisar manter seu celular
+                                conectado à internet.<br>
+                                Use o WhatsApp em até quatro aparelhos conectados e um celular ao mesmo tempo.</p>
+                        </div>
+                    </article>
+                    <footer class="main_footer_chat p-0 m-0">
+                        <p
+                            class="footer_description_welcome d-flex p-0 m-0 align-items-center justify-content-center text-center">
+                            <svg width="10" height="12" viewBox="0 0 10 12" class="">
+                                <path
+                                    d="M5.008 1.6c1.375 0 2.501 1.074 2.586 2.427l.005.164v1.271h.158c.585 0 1.059.48 1.059 1.07v3.351c0 .59-.474 1.07-1.059 1.07h-5.5c-.582 0-1.057-.48-1.057-1.07V6.531c0-.59.474-1.069 1.058-1.069h.158V4.191c0-1.375 1.075-2.501 2.429-2.586l.163-.005Zm0 1.248c-.696 0-1.272.534-1.337 1.214l-.006.129-.002 1.271H6.35l.001-1.271c0-.653-.47-1.2-1.088-1.319l-.126-.018-.129-.006Z"
+                                    fill="#aebac1"></path>
+                            </svg>
+                            <span class="p-0 m-0 pl-2">
+                                Protegido com a criptografia de ponta a ponta
+                            </span>
+                        </p>
+
+                    </footer>
+                </div>
+            </main>
+
+            <main role="main" class="col-md-8 col-lg-9 p-0 m-0 container_chat">
+                <div class="wrapper">
+                    <div class="loading">
+                        <div class="spinner-grow text-light" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <p style="color:#e9edef;" class="pl-2 p-0 m-0">Buscando conversas...</p>
+                    </div>
+                    <article class="content_chat px-5 p-0 m-0">
+                        <div class="h-100 d-flex flex-column-reverse" id="print_message_chat">
+                            <!-- <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
+                                <div class="msg_cotainer_send">
+                                    Ok, thank you have a good day
+                                    <span class="msg_time">9:10</span>
+                                    <span class="tail-out"><svg viewBox="0 0 8 13" width="8" height="13" class="">
+                                            <path opacity=".13"
+                                                d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path>
+                                            <path fill="currentColor"
+                                                d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-start m-0 pb-1 p-0 box_message">
+                                <div class="msg_cotainer">
+                                    Bye, see you
+                                    <span class="msg_time">9:12</span>
+                                    <span class="tail-in"><svg viewBox="0 0 8 13" width="8" height="13" class="">
+                                            <path opacity=".13" fill="#0000000"
+                                                d="M1.533 3.568 8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M1.533 2.568 8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z">
+                                            </path>
+                                        </svg></span>
+                                </div>
+                            </div> -->
+                        </div>
+                    </article>
+                    <footer class="main_footer_chat p-0 m-0">
+                        <div class="d-flex align-items-center">
+                            <div style="cursor: pointer;" class="div_icons_footer_bar">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="#aebac1"
+                                        d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <div style="cursor: pointer;" class="div_icons_footer_bar">
+                                <svg viewBox="0 0 24 24" width="24" height="24">
+                                    <path fill="#aebac1"
+                                        d="M1.816 15.556v.002c0 1.502.584 2.912 1.646 3.972s2.472 1.647 3.974 1.647a5.58 5.58 0 0 0 3.972-1.645l9.547-9.548c.769-.768 1.147-1.767 1.058-2.817-.079-.968-.548-1.927-1.319-2.698-1.594-1.592-4.068-1.711-5.517-.262l-7.916 7.915c-.881.881-.792 2.25.214 3.261.959.958 2.423 1.053 3.263.215l5.511-5.512c.28-.28.267-.722.053-.936l-.244-.244c-.191-.191-.567-.349-.957.04l-5.506 5.506c-.18.18-.635.127-.976-.214-.098-.097-.576-.613-.213-.973l7.915-7.917c.818-.817 2.267-.699 3.23.262.5.501.802 1.1.849 1.685.051.573-.156 1.111-.589 1.543l-9.547 9.549a3.97 3.97 0 0 1-2.829 1.171 3.975 3.975 0 0 1-2.83-1.173 3.973 3.973 0 0 1-1.172-2.828c0-1.071.415-2.076 1.172-2.83l7.209-7.211c.157-.157.264-.579.028-.814L11.5 4.36a.572.572 0 0 0-.834.018l-7.205 7.207a5.577 5.577 0 0 0-1.645 3.971z">
+                                    </path>
+                                </svg>
+                            </div>
+                            <input type="text" class="w-100 text_message_box" name="text_message_box"
+                                id="text_message_box" data-id="" />
+                            <div style="cursor: pointer;" class="text-nowrap div_icons_footer_bar"
+                                onclick="btnSendMessage()">
+                                <svg viewBox="0 0 24 24" width="24" height="24" class="">
+                                    <path fill="#aebac1"
+                                        d="M1.101 21.757 23.8 12.028 1.101 2.3l.011 7.912 13.623 1.816-13.623 1.817-.011 7.912z">
+                                    </path>
+                                </svg>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+            </main>
+
+        </div>
+    </div>
+
+
+    <div id="container_video_voice">
+        <div class="wrapper">
+            <div class="header">
+            </div>
+            <div class="content">
+                <div class="col-12 room_before">
+                    <div
+                        class="d-flex justify-content-center align-items-center flex-direction-column flex-column img_voice">
+                        <h1 class="title_username text-center pb-4 px-2"></h1>
+                        <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                            class="rounded-circle user_img">
+                        <div id="alert_transmission" class="mt-3">
+                            <div class="spinner-border text-light spinner-border-sm" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#aebac1"
+                                class="bi bi-telephone-inbound" viewBox="0 0 16 16">
+                                <path
+                                    d="M15.854.146a.5.5 0 0 1 0 .708L11.707 5H14.5a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5v-4a.5.5 0 0 1 1 0v2.793L15.146.146a.5.5 0 0 1 .708 0zm-12.2 1.182a.678.678 0 0 0-1.015-.063L1.605 2.3c-.483.484-.661 1.169-.45 1.77a17.568 17.568 0 0 0 4.168 6.608 17.569 17.569 0 0 0 6.608 4.168c.601.211 1.286.033 1.77-.45l1.034-1.034a.678.678 0 0 0-.063-1.015l-2.307-1.794a.678.678 0 0 0-.58-.122l-2.19.547a1.745 1.745 0 0 1-1.657-.459L5.482 8.062a1.745 1.745 0 0 1-.46-1.657l.548-2.19a.678.678 0 0 0-.122-.58L3.654 1.328zM1.884.511a1.745 1.745 0 0 1 2.612.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z" />
+                            </svg> Chamando...
+
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 room_after">
+                    <div class="col-12">
+                        <div
+                            class="d-flex justify-content-center align-items-center flex-direction-column flex-column img_voice">
+                            <div class="d-flex align-items-center">
+                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg"
+                                    class="rounded-circle user_img">
+                                <h1 class="title_username text-center pl-3"></h1>
+                            </div>
+                            <div id="remote_stream">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer" id="footer_bar_options">
+                <div class="d-flex align-items-center justify-content-center options_transmission">
+                    <div class="px-2" id="btn_muted_voice_room" data-voice="on">
+                        <span class="muted_voice_room">
+                            <img src="/img/mic-bi-mute-fill.svg" alt="">
+                        </span>
+                    </div>
+                    <div class="px-2" id="btn_open_voice_room">
+                        <span class="open_voice_room">
+                            <img src="img/telephone-inbound-fill.svg" alt="">
+                        </span>
+                    </div>
+                    <div class="px-2" id="btn_close_voice_room">
+                        <span class="close_voice_room">
+                            <img src="img/telephone-x-fill.svg" alt="">
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <%- include('./components/footer') %>
+
+        <script>
+
+            function logout() {
+                window.location.href = '/logout';
+                socket.emit('logout', {
+                    id: '<%- session.id %>',
+                    username: '<%- session.username %>'
+                });
+            }            
+
+            function btnSendMessage() {
+                var btn = $('#text_message_box').val();
+                var id_contact = $('#text_message_box').attr('data-id');
+                if (btn.length > 0) {
+                    var id_contact = id_contact;
+                    var message = btn;
+                    sendMessage(id_contact, '<%= session.id %>', message)
+                }
+            }
+
+            $('.search_username').keyup(function (e) {
+                var username = $(this).val();
+
+                if (username.length > 3) {
+                    $('.contacts').empty();
+                    $.ajax({
+                        url: '/searchByUsername',
+                        type: 'JSON',
+                        method: 'POST',
+                        data: { username: username, id: '<%= session.id %>' },
+                        success: function (resp) {
+                            console.log(resp)
+                            var content = '';
+                            var new_contact = `
+                        <li class="content_contacts" id="contact_hash_@@ID@@" >
+                        <div class="px-3">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                            <span class="flag_mark flag_online" data-status=""></span>
+                        </div>
+                        <div class="row align-items-center" >
+                            <div class="col content_message_contacts" onclick="loadChat('@@ID@@', '@@USERNAME@@')">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <span class="title_contacts">@@USERNAME@@</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <p class="p-0 m-0 message_new_contact">Envie uma mensagem.</p>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                        </li>`
+                            var exists_contact = `
+                        <li class="content_contacts" >
+                        <div class="px-3">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                            <span class="flag_mark flag_online" data-status=""></span>
+                        </div>
+                        <div class="row align-items-center">
+                            <div class="col content_message_contacts" onclick="loadChat('@@ID@@', '@@USERNAME@@')">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <span class="title_contacts">@@USERNAME@@</span>
+                                    </div>
+                                    <div class="col-2 p-0 m-0 text-right">
+                                        <span class="title_contacts_hours">@@DATE@@</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <p class="p-0 m-0 contacts_message">@@MESSAGE@@</p>
+                                    </div>
+                                    <div class="col-2 d-flex justify-content-end p-0 m-0">
+                                        <div class="notification_new_message text-center d-flex align-items-center">
+                                            <span class="w-100">10</span>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                        </li>`;
+
+                            $.each(resp.data, function (key, index) {
+                                content += new_contact.replace(/@@USERNAME@@/g, index.username).replace(/@@ID@@/g, index.id)
+                            })
+                            $('.contacts').append(content);
+
+                        }, error: function (resp) {
+                            console.log('error')
+                            console.log(resp)
+                        }
+                    })
+                } else {
+                    if (username.length == 0) {
+                        loadContacts('<%= session.id %>')
+                    }
+                }
+            })
+
+            var chatId = "chat_<%- session.id %>"
+            socket.on(chatId, resp => {
+                if ($('#contact_hash_' + resp.data.id).length == 0) {
+                    addUser(resp);
+                } else {
+                    var d = new Date();
+                    var strDate = d.getHours() + ":" + d.getMinutes();
+                    if ($('#content_chat_' + resp.data.id).length == 1) {
+                        $('#content_chat_' + resp.data.id).append(`
+                        <div class="d-flex justify-content-start m-0 pb-1 p-0 box_message">
+                                <div class="msg_cotainer">
+                                    ${resp.message}
+                                    <span class="msg_time">${strDate}</span>
+                                    <span class="tail-in"><svg viewBox="0 0 8 13" width="8" height="13" class="">
+                                            <path opacity=".13" fill="#0000000"
+                                                d="M1.533 3.568 8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M1.533 2.568 8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z">
+                                            </path>
+                                        </svg></span>
+                                </div>
+                            </div>`);
+                        var div = $('#content_chat_' + resp.data.id)
+                        var height = div[0].scrollHeight;
+                        div.scrollTop(height);
+                        $('#contact_hash_' + resp.data.id + ' .message').html(resp.message)
+                        $('#contact_hash_' + resp.data.id + ' .message').removeClass('message_new_contact')
+                        $('#contact_hash_' + resp.data.id + ' .message').addClass('contacts_message')
+                        $('#contact_hash_' + resp.data.id + ' .notification_new_message').remove()
+                    }
+                }
+            });
+
+            socket.emit('login', {
+                id: '<%- session.id %>',
+                username: '<%- session.username %>'
+            });            
+
+            socket.on('onlineUser', data => {
+                $('#contact_hash_' + data.id + ' .flag_mark').removeClass('flag_offline')
+                $('#contact_hash_' + data.id + ' .flag_mark').addClass('flag_online')
+                $('#contact_hash_' + data.id + ' .flag_mark').attr('data-status', 'online')
+                if ($('#content_chat_' + data.id).length == 1) {
+                    loadIconsCall(data.id, data.username)
+                }
+            });
+
+            socket.on('offlineUser', data => {
+                $('#contact_hash_' + data.id + ' .flag_mark').removeClass('flag_online')
+                $('#contact_hash_' + data.id + ' .flag_mark').addClass('flag_offline')
+                $('#contact_hash_' + data.id + ' .flag_mark').attr('data-status', 'offline')
+                if ($('#content_chat_' + data.id).length == 1) {
+                    removeIconsCall()
+                }
+            });
+
+            socket.on('initCallVideo_<%- session.id %>', data => {
+                $('#container_video_voice').fadeIn().show()
+                $('#container_video_voice .room_after').fadeIn().show()
+                $('#container_video_voice .room_after .title_username').html(`${data.username_author}`)
+                prepareJoinTransmissionVideo(data)
+            })
+
+            function loadChat(id, username) {
+                if ($('#contact_hash_' + id).hasClass('active_contact') == false) {
+                    $('.content_contacts').removeClass('active_contact')
+                    $('#contact_hash_' + id).addClass('active_contact')
+                    $('.welcome_container').hide();
+                    $('.container_chat').slideDown('1000').show();
+                    $('#container_header_chat').css('display', 'flex');
+                    $('#container_header_chat .username_title').html(username);
+                    $('#text_message_box').attr('data-id', id)
+                    $('.content_chat').attr('id', 'content_chat_' + id)
+                    $('#print_message_chat').empty()
+
+                    if ($('#contact_hash_' + id + ' .flag_mark').attr('data-status') == 'online') {
+                        console.log('entoru aqui')
+                        loadIconsCall(id, username)
+                    } else {
+                        removeIconsCall()
+                    }
+
+                    $.ajax({
+                        url: '/getMessagesUser',
+                        type: 'JSON',
+                        method: 'POST',
+                        data: { id: '<%- session.id %>', send_user_id: id },
+                        success: function (resp) {
+                            console.log('Success')
+                            console.log(resp)
+                            $('.container_chat .loading').css('display', 'none')
+                            loadMessage(resp, id)
+                        },
+                        beforeSend: function () {
+                            $('.container_chat .loading').css('display', 'flex')
+                        },
+                        error: function (resp) {
+                            console.log('Error')
+                            console.log(resp)
+                            $('.container_chat .loading').css('display', 'none')
+                        }
+                    })
+                }
+            }
+
+            function sendMessage(id_send, id_author, message) {
+                $('#content_chat_' + id_send).append(`
+                <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
+                    <div class="msg_cotainer_send">
+                        ${message}
+                        <span class="msg_time">9:10</span>
+                        <span class="tail-out"><svg viewBox="0 0 8 13" width="8" height="13" class=""><path opacity=".13" d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path><path fill="currentColor" d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path></svg></span>
+                    </div>
+                </div>`);
+                var div = $('#content_chat_' + id_send)
+                var height = div[0].scrollHeight;
+                div.scrollTop(height);
+                $('#text_message_box').val('')
+                $('#contact_hash_' + id_send + ' .message').html(message)
+
+                socket.emit("send message", {
+                    id_send: id_send,
+                    id_author: id_author,
+                    message: message
+                })
+            }
+
+            function addUser(data) {
+                var d = new Date();
+                var strDate = d.getHours() + ":" + d.getMinutes();
+                $('.contacts').append(`
+                        <li class="content_contacts" id="contact_hash_${data.data.id}" >
+                        <div class="px-3">
+                            <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                            <span class="flag_mark flag_online" data-status=""></span>
+                        </div>
+                        <div class="row w-100 align-items-center" >
+                            <div class="col content_message_contacts" onclick="loadChat('${data.data.id}', '${data.data.username}')">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <span class="title_contacts">${data.data.username}</span>
+                                    </div>
+                                    <div class="col-2 p-0 m-0 text-right">
+                                        <span class="title_contacts_hours">${strDate}</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12">
+                                <div class="row p-0 m-0">
+                                    <div class="col-9 p-0 m-0 text-left">
+                                        <p class="p-0 m-0 message message_new_contact">${data.message}</p>
+                                    </div>
+                                    <div class="col-2 d-flex justify-content-end p-0 m-0">
+                                        <div class="notification_new_message text-center d-flex align-items-center">
+                                            <span class="w-100 count_new_message">1</span>
+                                        </div>
+                                    </div>
+                                </div>                        
+                            </div>
+                        </div>
+                        </li>`);
+            }
+
+            function addContacts(data) {
+                var d = new Date();
+                var strDate = d.getHours() + ":" + d.getMinutes();
+                $.each(data.data, function (key, index) {
+                    var lastMessage = index.messages[(index.messages.length - 1)].message
+                    var newMessages = ''
+                    var isOnline = ''
+                    var i = 0;
+                    var notMessageVisualized = $.map(index.messages, function (index) {
+                        if (index.visualized == 1) {
+                            return i++
+                        }
+                    })
+
+                    if (index.is_online == 1) {
+                        isOnline = `<span class="flag_mark flag_online" data-status="online"></span>`;
+                    } else {
+                        isOnline = `<span class="flag_mark flag_offline" data-status="offline"></span>`;
+                    }
+
+                    if (notMessageVisualized.length != 0) {
+                        newMessages = `<div class="notification_new_message text-center d-flex align-items-center">
+                                                <span class="w-100 count_new_message">${notMessageVisualized.length}</span>
+                                            </div>`
+                    }
+                    $('.contacts').append(`
+                            <li class="content_contacts" id="contact_hash_${index.id}" >
+                            <div class="px-3">
+                                <img src="https://static.turbosquid.com/Preview/001292/481/WV/_D.jpg" class="rounded-circle user_img">
+                                ${isOnline}
+                            </div>
+                            <div class="row w-100 align-items-center" >
+                                <div class="col content_message_contacts" onclick="loadChat('${index.id}', '${index.username}')">
+                                    <div class="row p-0 m-0">
+                                        <div class="col-9 p-0 m-0 text-left">
+                                            <span class="title_contacts">${index.username}</span>
+                                        </div>
+                                        <div class="col-2 p-0 m-0 text-right">
+                                            <span class="title_contacts_hours">${strDate}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-12">
+                                    <div class="row p-0 m-0">
+                                        <div class="col-9 p-0 m-0 text-left">
+                                            <p class="p-0 m-0 message ${(newMessages.length != 0 ? 'message_new_contact' : 'contacts_message')} contacts_message">${lastMessage}</p>
+                                        </div>
+                                        <div class="col-2 d-flex justify-content-end p-0 m-0">
+                                            ${newMessages}
+                                            <div id="more_options_contacts" onclick="moreOptionsContacts(this)">
+                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="#8696a0" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+                                                <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+                                                </svg>
+                                                <div class="action_menu">
+                                                    <ul class="ul-inline p-0 m-0">
+                                                        <li>Apagar conversa</li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>                        
+                                </div>
+                            </div>
+                            </li>`);
+                })
+            }
+
+            function loadContacts(id) {
+                $('.contacts').empty();
+                $.ajax({
+                    url: '/getContactsUser',
+                    type: 'JSON',
+                    method: 'POST',
+                    data: { id: id },
+                    success: function (resp) {
+                        console.log(resp)
+                        $('#sidebarMenu .loading').css('display', 'none')
+                        addContacts(resp)
+                    },
+                    beforeSend: function () {
+                        $('#sidebarMenu .loading').css('display', 'flex')
+                    },
+                    error: function (resp) {
+                        $('#sidebarMenu .loading').css('display', 'none')
+                    }
+                })
+            }
+
+            function loadMessage(data, send_user_id) {
+                $.ajax({
+                    url: '/checkMessagesVisualized',
+                    type: 'json',
+                    method: 'POST',
+                    data: { id: '<%- session.id %>' },
+                    success: function (resp) {
+                        console.log('success');
+                        console.log(resp);
+                        $('#contact_hash_' + send_user_id + ' .message').removeClass('message_new_contact ');
+                        $('#contact_hash_' + send_user_id + ' .notification_new_message ').remove();
+                    },
+                    error: function (resp) {
+                        console.log('error');
+                        console.log(resp);
+                    }
+                })
+                $.each(data.data, function (key, index) {
+                    var d = new Date(index.created_at)
+                    if (index.author == '<%- session.id %>') {
+                        $('#print_message_chat').append(`
+                        <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
+                                <div class="msg_cotainer_send">
+                                    ${index.message}
+                                    <span class="msg_time">${d.getHours() + ':' + d.getMinutes()}</span>
+                                    <span class="tail-out"><svg viewBox="0 0 8 13" width="8" height="13" class="">
+                                            <path opacity=".13"
+                                                d="M5.188 1H0v11.193l6.467-8.625C7.526 2.156 6.958 1 5.188 1z"></path>
+                                            <path fill="currentColor"
+                                                d="M5.188 0H0v11.193l6.467-8.625C7.526 1.156 6.958 0 5.188 0z"></path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        `);
+                    } else {
+                        $('#print_message_chat').append(`
+                        <div class="d-flex justify-content-start m-0 pb-1 p-0 box_message">
+                                <div class="msg_cotainer">
+                                    ${index.message}
+                                    <span class="msg_time">${d.getHours() + ':' + d.getMinutes()}</span>
+                                    <span class="tail-in"><svg viewBox="0 0 8 13" width="8" height="13" class="">
+                                            <path opacity=".13" fill="#0000000"
+                                                d="M1.533 3.568 8 12.193V1H2.812C1.042 1 .474 2.156 1.533 3.568z">
+                                            </path>
+                                            <path fill="currentColor"
+                                                d="M1.533 2.568 8 11.193V0H2.812C1.042 0 .474 1.156 1.533 2.568z">
+                                            </path>
+                                        </svg></span>
+                                </div>
+                            </div>
+                        `);
+                    }
+                })
+            }
+
+            function loadIconsCall(id, username) {
+                $('#icon_call_video').attr('onclick', `prepareTransmissionVideo('${id}', '<%- session.id %>', '${username}', '<%- session.username %>')`)
+                $('#icon_call_voice').attr('onclick', `prepareTransmissionAudio('${id}', '<%- session.id %>', '${username}', '<%- session.username %>')`)
+                $('#icon_call_video').html(`<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#aebac1" class="px-1 bi bi-camera-video-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M0 5a2 2 0 0 1 2-2h7.5a2 2 0 0 1 1.983 1.738l3.11-1.382A1 1 0 0 1 16 4.269v7.462a1 1 0 0 1-1.406.913l-3.111-1.382A2 2 0 0 1 9.5 13H2a2 2 0 0 1-2-2V5z"/>
+                              </svg>`)
+                $('#icon_call_voice').html(`                          
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="#aebac1" class="px-1 bi bi-telephone-fill" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.678.678 0 0 0 .178.643l2.457 2.457a.678.678 0 0 0 .644.178l2.189-.547a1.745 1.745 0 0 1 1.494.315l2.306 1.794c.829.645.905 1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.634 18.634 0 0 1-7.01-4.42 18.634 18.634 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877L1.885.511z"/>
+                              </svg>
+                `)
+            }
+
+            function removeIconsCall() {
+                $('#icon_call_video').empty()
+                $('#icon_call_voice').empty()
+            }
+
+            function moreOptionsContacts(e){
+                console.log('chegou aqui')
+                $(e).children('.action_menu').toggle()
+            }
+
+            $(function () {
+                $('#text_message_box').keypress(function (event) {
+                    var keycode = (event.keyCode ? event.keyCode : event.which);
+                    if (keycode == '13' && $(this).val().length > 0) {
+                        var id_contact = $(this).attr('data-id');
+                        var message = $(this).val();
+                        sendMessage(id_contact, '<%= session.id %>', message)
+                    }
+                });
+                loadContacts('<%= session.id %>')
+
+                $('#more_options').click(function () {
+                $('#more_options .action_menu').toggle();
+                });
+                $('#menu_friend').click(function () {
+                    $('#menu_friend .action_menu').toggle();
+                });
+
+            })
+        </script>
+        </body>
+
+        </html>
