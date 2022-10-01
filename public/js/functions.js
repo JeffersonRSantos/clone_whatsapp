@@ -8,12 +8,9 @@ var shouldFaceUser = true;
 var defaultsOpts = { audio: true, video: true }
 defaultsOpts.video = { facingMode: shouldFaceUser ? 'user' : 'environment' }
 var peerConfig = {
-    'iceServers': [
-        { url: 'stun:stun.l.google.com:19302' },
-    ]
-    // host: 'localhost',
-    // port: 9000,
-    // path: '/chat' 
+    host: 'localhost',
+    port: 9000,
+    path: '/chat' 
 }
 
 var peers = {}
@@ -54,14 +51,23 @@ function createRoom(code, id_send, author, username, username_author) {
                 username: username,
                 username_author: username_author
             })
-            console.log('criou a transmissão')
 
-            mutedVoice(stream)            
+            console.log('Transmissão iniciada:' + stream)
+            mutedVoice(stream)
+
+            $('#container_video_voice #btn_close_voice_room').click(function(){
+                peer.destroy()
+                socket.emit('disconnectRoom');
+                $('#container_video_voice #remote_stream video').remove();
+                $('#container_video_voice').fadeOut(500);
+                $('#container_video_voice .room_after').hide();
+            })
+
         }, (err) => {
-            //showErros();
             console.log(err)
         })
     })
+
     peer.on('call', (call) => {
         call.answer(local_stream);
         var i = 0;
@@ -69,33 +75,31 @@ function createRoom(code, id_send, author, username, username_author) {
         call.on('stream', (stream) => {
             i++
             if (i == 1) {
-                console.log('novo usuário entrou')
-                console.log(stream)
+                console.log('novo usuário entrou:' + stream)
                 $('#container_video_voice .room_before').fadeOut().hide();
                 $('#container_video_voice .room_after').fadeIn().show();
                 $('#container_video_voice .title_username ').html(username);
                 setRemoteStream(stream);
             }
             peers[stream.id] = call
-
         })
-
-        
 
         call.on('close', function (obj) {
             console.log('transmissão fechada 1')
+            call.close()
         });
 
-    })
+        call.on('disconnected', function (obj) {
+            console.log('reconectando')
+            call.reconnect();
+        });
+
+    })    
 
     peer.on('close', function (obj) {
         console.log('transmissão fechada 2')
-    });
-
-    peer.on('disconnected', function (obj) {
-        console.log('reconectando')
-        peer.reconnect();
-    });
+        peer.destroy()
+    });    
 }
 
 function setLocalStream(stream) {
@@ -149,8 +153,6 @@ function mutedVoice(stream){
 }
 
 function joinRoom(code) {
-    console.log('código na transmissão')
-    console.log(code)
     peer = new Peer(undefined, peerConfig)
     peer.on('open', (id) => {
         getUserMedia({ audio: true, video: true }, (stream) => {
@@ -161,7 +163,6 @@ function joinRoom(code) {
             console.log('abriu a chamada')
             console.log(call)
 
-            closeRoom(call)
             mutedVoice(stream)
             
             call.on('stream', (stream) => {
@@ -195,17 +196,18 @@ socket.on('user-connected', userId => {
 })
 
 socket.on('user-disconnected', userId => {
+    console.log('alguém se desconectou :/')
     if (peers[userId]) peers[userId].close()
     $('#container_video_voice').fadeOut(1000);
 })
 
 function closeRoom(call) {
-    $('#container_video_voice #btn_close_voice_room').click(function(){
-        call.close()
-        handlePeerDisconnect()
-        $('#container_video_voice #remote_stream video').remove();
-        $('#container_video_voice').fadeOut(500);
-        $('#container_video_voice .room_after').hide();
-        location.reload()
-    })
+    // $('#container_video_voice #btn_close_voice_room').click(function(){
+    //     call.close()
+    //     handlePeerDisconnect()
+    //     $('#container_video_voice #remote_stream video').remove();
+    //     $('#container_video_voice').fadeOut(500);
+    //     $('#container_video_voice .room_after').hide();
+    //     //location.reload()
+    // })
 }

@@ -100,7 +100,7 @@ io.on('connection', socket => {
     //entrou na sala
     //socket.to(roomId).broadcast.emit('user-connected', userId)
     //saiu da sala
-    socket.on('disconnect', () => {
+    socket.on('disconnectRoom', () => {
       console.log('disconnect usuário')
       console.log(userId)
       socket.broadcast.to(roomId).emit('user-disconnected', userId)
