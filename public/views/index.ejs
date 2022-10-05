@@ -249,8 +249,7 @@
                         </div>
                         <p style="color:#e9edef;" class="pl-2 p-0 m-0">Buscando conversas...</p>
                     </div>
-                    <article class="content_chat px-5 p-0 m-0">
-                        <div class="h-100 d-flex flex-column-reverse" id="print_message_chat">
+                    <article class="content_chat px-5 p-0 m-0 print_message_chat">
                             <!-- <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
                                 <div class="msg_cotainer_send">
                                     Ok, thank you have a good day
@@ -277,7 +276,6 @@
                                         </svg></span>
                                 </div>
                             </div> -->
-                        </div>
                     </article>
                     <footer class="main_footer_chat p-0 m-0">
                         <div class="d-flex align-items-center">
@@ -295,8 +293,8 @@
                                     </path>
                                 </svg>
                             </div>
-                            <input type="text" class="w-100 text_message_box" name="text_message_box"
-                                id="text_message_box" data-id="" />
+                            <textarea type="text" class="w-100 text_message_box" name="text_message_box"
+                                id="text_message_box" data-id="" ></textarea>
                             <div style="cursor: pointer;" class="text-nowrap div_icons_footer_bar"
                                 onclick="btnSendMessage()">
                                 <svg viewBox="0 0 24 24" width="24" height="24" class="">
@@ -557,7 +555,7 @@
                     $('#container_header_chat .username_title').html(username);
                     $('#text_message_box').attr('data-id', id)
                     $('.content_chat').attr('id', 'content_chat_' + id)
-                    $('#print_message_chat').empty()
+                    $('.print_message_chat').empty()
 
                     if ($('#contact_hash_' + id + ' .flag_mark').attr('data-status') == 'online') {
                         console.log('entoru aqui')
@@ -590,7 +588,7 @@
             }
 
             function sendMessage(id_send, id_author, message) {
-                $('#content_chat_' + id_send).append(`
+                $('#content_chat_' + id_send + '.print_message_chat').prepend(`
                 <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
                     <div class="msg_cotainer_send">
                         ${message}
@@ -654,6 +652,7 @@
                     var lastMessage = index.messages[(index.messages.length - 1)].message
                     var newMessages = ''
                     var isOnline = ''
+                    var isFriend = ''
                     var i = 0;
                     var notMessageVisualized = $.map(index.messages, function (index) {
                         if (index.visualized == 1) {
@@ -671,6 +670,18 @@
                         newMessages = `<div class="notification_new_message text-center d-flex align-items-center">
                                                 <span class="w-100 count_new_message">${notMessageVisualized.length}</span>
                                             </div>`
+                    }
+
+                    if(index.friend == 0){
+                        isFriend = `<li onclick="addContact('${index.id}', 'add')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#fff" class="bi bi-person-plus" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+  <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+</svg> Adicionar contato</li>`
+                    }else{
+                        isFriend = `<li onclick="addContact('${index.id}', 'remove')"><svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#fff" class="bi bi-person-x" viewBox="0 0 16 16">
+  <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+  <path fill-rule="evenodd" d="M12.146 5.146a.5.5 0 0 1 .708 0L14 6.293l1.146-1.147a.5.5 0 0 1 .708.708L14.707 7l1.147 1.146a.5.5 0 0 1-.708.708L14 7.707l-1.146 1.147a.5.5 0 0 1-.708-.708L13.293 7l-1.147-1.146a.5.5 0 0 1 0-.708z"/>
+</svg> Remover contato</li>`
                     }
                     $('.contacts').append(`
                             <li class="content_contacts" id="contact_hash_${index.id}" >
@@ -702,8 +713,13 @@
                                                 </svg>
                                                 <div class="action_menu">
                                                     <ul class="ul-inline p-0 m-0">
-                                                        <li><i class="fas fa-ban"></i> Adicionar contato</li>
-                                                        <li><i class="fas fa-ban"></i> Apagar conversa</li>
+                                                        ${isFriend}
+                                                        <li onclick="clearMessage('${index.id}')">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill="#fff" class="bi bi-trash" viewBox="0 0 16 16">
+  <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+  <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+</svg>
+                                                            Apagar conversa</li>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -756,7 +772,7 @@
                 $.each(data.data, function (key, index) {
                     var d = new Date(index.created_at)
                     if (index.author == '<%- session.id %>') {
-                        $('#print_message_chat').append(`
+                        $('.print_message_chat').append(`
                         <div class="d-flex justify-content-end m-0 pb-1 p-0 box_message">
                                 <div class="msg_cotainer_send">
                                     ${index.message}
@@ -771,7 +787,7 @@
                             </div>
                         `);
                     } else {
-                        $('#print_message_chat').append(`
+                        $('.print_message_chat').append(`
                         <div class="d-flex justify-content-start m-0 pb-1 p-0 box_message">
                                 <div class="msg_cotainer">
                                     ${index.message}
@@ -814,13 +830,54 @@
                 $(e).children('.action_menu').toggle()
             }
 
+            function clearMessage(id){
+                $.ajax({
+                    url: '/clear_message',
+                    type: 'JSON',
+                    method: 'POST',
+                    data: {id: id},
+                    success: function(resp){
+                        console.log(resp)
+                    },
+                    error: function(resp){
+                        console.log(resp)
+                    }
+                })
+            }
+
+            function addContact(id, type = 'add'){
+                var url = ''
+                if(type == 'add') url = '/add_contact'
+                else url = '/remove_contact'
+
+                $.ajax({
+                    url: url,
+                    type: 'JSON',
+                    method: 'POST',
+                    data: {id: id},
+                    success: function(resp){
+                        console.log(resp)
+                    },
+                    error: function(resp){
+                        console.log(resp)
+                    }
+                })
+            }
+
             $(function () {
-                $('#text_message_box').keypress(function (event) {
-                    var keycode = (event.keyCode ? event.keyCode : event.which);
-                    if (keycode == '13' && $(this).val().length > 0) {
-                        var id_contact = $(this).attr('data-id');
-                        var message = $(this).val();
-                        sendMessage(id_contact, '<%= session.id %>', message)
+                $('#text_message_box').keypress(function (e) {
+                    var keycode = (e.keyCode ? e.keyCode : e.which);
+                    console.log(keycode)
+                    if(e.shiftKey && keycode == '13'){
+                        $(this).append('\n')
+                    }else{
+                        if (keycode == '13') {
+                            var id_contact = $(this).attr('data-id');
+                            var message = $(this).val().replace(/^\s+|\s+$/g, '');
+                            if(message.length > 0){
+                                sendMessage(id_contact, '<%= session.id %>', message.replace('\n', '</br>'))
+                            }
+                        }
                     }
                 });
                 loadContacts('<%= session.id %>')

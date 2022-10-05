@@ -17,30 +17,11 @@ SearchController = {
     },
     async getContactsUser(req, res, next){
         try {
-            // const search = await knex.raw(`
-            // SELECT u.username, u.id, h.user_id, h.friend, chat.message, u.is_online, chat.visualized FROM tb_historic_user_message as h
-            // LEFT JOIN tb_chat as chat ON h.user_id IN (h.user_id, h.connection_user_id)
-            // LEFT JOIN tb_users as u ON h.user_id = u.id
-            // WHERE h.user_id != ?`, [req.body.id])
-            // .then((resp)=>{
-            //     return resp[0].reduce((result, row) => {
-            //         result[row.id] = result[row.id] || {
-            //           id: row.id,
-            //           friend: row.friend,
-            //           is_online: row.is_online,
-            //           username: row.username,
-            //           messages: [],
-            //         };
-                
-            //         result[row.id].messages.push({ message: row.message, visualized: row.visualized });
-            //         return result;
-            //       }, {})
-            // })
             const search = await knex.raw(`
             SELECT u.id, u.username, u.is_online, h.friend, chat.message, chat.visualized, h.connection_user_id, chat.user_id, chat.send_user_id 
             FROM tb_historic_user_message as h
-            LEFT JOIN tb_chat as chat ON chat.user_id IN ( h.user_id, h.connection_user_id )
-            LEFT JOIN tb_users as u ON u.id IN (h.user_id, h.connection_user_id)
+            JOIN tb_chat as chat ON chat.user_id = h.user_id AND chat.send_user_id = h.connection_user_id
+            JOIN tb_users as u ON u.id IN (h.user_id, h.connection_user_id)
             WHERE h.user_id = ?`, [req.body.id])
             .then((resp)=>{
                 return resp[0].reduce((result, row) => {

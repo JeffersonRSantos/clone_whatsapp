@@ -508,6 +508,8 @@ nav#sidebarMenu {
 .container_chat .msg_cotainer,
 .container_chat .msg_cotainer_send {
     padding: 6px 7px 8px 9px;
+    max-width: 100%;
+    word-break: break-all;
 }
 
 .container_chat .tail-in {
@@ -586,8 +588,9 @@ nav#sidebarMenu {
 .container_chat .wrapper .content_chat {
     grid-area: content;
     display: flex;
-    flex-direction: column;
+    flex-direction: column-reverse;
     overflow: auto;
+    height: 100%;
 }
 
 .container_chat .wrapper .main_footer_chat {
@@ -604,7 +607,9 @@ nav#sidebarMenu {
     flex: 1 1 auto;
     width: inherit;
     min-width: 0;
-    min-height: 20px;
+    min-height: 40px;
+    height: 40px;
+    max-height: 100px;
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;

@@ -29,6 +29,48 @@ UserController = {
         } catch (e) {
             return next(e)
         }
+    },
+    async clearMessage(req, res, next){
+        try {
+            let clear = await knex('tb_chat')
+            .where({
+               user_id: req.session.data.id,
+               send_user_id: req.body.id
+            })
+            .del()
+
+            return res.json({status: 200});
+        } catch (error) {
+            return next(error)
+        }
+    },
+    async addContact(req, res, next){
+        try {
+            let update = await knex('tb_historic_user_message')
+            .update({friend: 1})
+            .where({
+                user_id: req.session.data.id,
+                connection_user_id: req.body.id
+            })
+
+            return res.json({success: 200})
+        } catch (error) {
+            return next(error);
+        }
+    },
+    async removeContact(req, res, next){
+        try {
+            let update = await knex('tb_historic_user_message')
+            .update({friend: 0})
+            .where({
+                user_id: req.session.data.id,
+                connection_user_id: req.body.id
+            })
+
+            return res.json({success: 200})
+        } catch (error) {
+            return next(error);
+        }
     }
 }
 
