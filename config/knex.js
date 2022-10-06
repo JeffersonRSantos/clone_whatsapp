@@ -5,7 +5,8 @@ const knex = require('knex')({
       port : 3306,
       user : 'root',
       password : '',
-      database : 'chat_socket'
+      database : 'chat_socket',
+      charset  : 'utf8mb4'
     }
   });
 

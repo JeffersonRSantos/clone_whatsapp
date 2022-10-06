@@ -907,3 +907,15 @@ select:-webkit-autofill:focus {
     display: block;
     z-index:1000 ;
 }
+
+div#content_emojis {
+    position: absolute;
+    width: 200px;
+    max-height: 116px;
+    top: -130px;
+    display: none;
+    overflow: auto;
+    padding: 0.5em 0 0.5em 0.5em;
+    border-radius: 10px;
+    background-color: var(--color-bg-v3);
+}
