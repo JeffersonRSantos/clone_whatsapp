@@ -224,7 +224,7 @@
                                 Use o WhatsApp em até quatro aparelhos conectados e um celular ao mesmo tempo.</p>
                         </div>
                     </article>
-                    <footer class="main_footer_chat p-0 m-0">
+                    <footer class="main_footer_chat m-0">
                         <p
                             class="footer_description_welcome d-flex p-0 m-0 align-items-center justify-content-center text-center">
                             <svg width="10" height="12" viewBox="0 0 10 12" class="">
@@ -277,21 +277,22 @@
                                 </div>
                             </div> -->
                     </article>
-                    <footer class="main_footer_chat p-0 m-0">
+                    <footer class="main_footer_chat m-0">
                         <div class="d-flex align-items-center">
-                            <div style="cursor: pointer;" class="div_icons_footer_bar">
+                            <div style="cursor: pointer;" class="div_icons_footer_bar div_icons_footer_bar_emojis">
                                 <svg viewBox="0 0 24 24" width="24" height="24" onclick="showEmojis()">
                                     <path fill="#aebac1"
                                         d="M9.153 11.603c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962zm-3.204 1.362c-.026-.307-.131 5.218 6.063 5.551 6.066-.25 6.066-5.551 6.066-5.551-6.078 1.416-12.129 0-12.129 0zm11.363 1.108s-.669 1.959-5.051 1.959c-3.505 0-5.388-1.164-5.607-1.959 0 0 5.912 1.055 10.658 0zM11.804 1.011C5.609 1.011.978 6.033.978 12.228s4.826 10.761 11.021 10.761S23.02 18.423 23.02 12.228c.001-6.195-5.021-11.217-11.216-11.217zM12 21.354c-5.273 0-9.381-3.886-9.381-9.159s3.942-9.548 9.215-9.548 9.548 4.275 9.548 9.548c-.001 5.272-4.109 9.159-9.382 9.159zm3.108-9.751c.795 0 1.439-.879 1.439-1.962s-.644-1.962-1.439-1.962-1.439.879-1.439 1.962.644 1.962 1.439 1.962z">
                                     </path>
                                 </svg>
                                 <div id="content_emojis">
+                                    <input type="text" class="filter_emojis m-0" placeholder="Filtrar emojis">
+                                    <h6 class="title_type_emojis pt-2">Smileys Symbols</h6>
                                     <div id="smileys_pan" class="facebook">
-                                        <h6 class="title_type_emojis">Smileys Symbols</h6>
                                         <span id="1F600" class="j j1F600 A" title="Grinning Face Emoji"
-                                            data-s="😀">😀</span><!-- &#x-->
+                                            data-s="😀">😀</span>
                                         <span id="1F601" class="j j1F601 A" title="Beaming Face With Smiling Eyes Emoji"
-                                            data-s="😁" 😁style="border: 1px solid rgb(255, 255, 255);"></span>
+                                            data-s="😁"> 😁</span>
                                         <span id="1F602" class="j j1F602 A" title="Face With Tears Of Joy Emoji"
                                             data-s="😂">😂</span>
                                         <span id="1F923" class="j j1F923 A" title="Rolling On The Floor Laughing Emoji"
@@ -307,7 +308,7 @@
                                         <span id="1F609" class="j j1F609 A" title="Winking Face Emoji"
                                             data-s="😉">😉</span>
                                         <span id="1F60A" class="j j1F60A A" title="Smiling Face With Smiling Eyes Emoji"
-                                            data-s="😊" 😊style="border: 1px solid rgb(255, 255, 255);"></span>
+                                            data-s="😊">😊</span>
                                         <span id="1F60B" class="j j1F60B A" title="Face Savoring Food Emoji"
                                             data-s="😋">😋</span>
                                         <span id="1F60E" class="j j1F60E A" title="Smiling Face With Sunglasses Emoji"
@@ -321,13 +322,11 @@
                                         <span id="1F619" class="j j1F619 A" title="Kissing Face With Smiling Eyes Emoji"
                                             data-s="😙">😙</span>
                                         <span id="1F61A" class="j j1F61A A" title="Kissing Face With Closed Eyes Emoji"
-                                            data-s="😚" 😚style="border: 1px solid rgb(255, 255, 255);"></span>
-                                        <span id="263A" class="j j263A A" title="Smiling Face Emoji" data-s="☺"
-                                            ☺style="border: 1px solid rgb(255, 255, 255);"></span>
+                                            data-s="😚">😚</span>
                                         <span id="1F642" class="j j1F642 A" title="Slightly Smiling Face Emoji"
-                                            data-s="🙂" 🙂style="border: 1px solid rgb(255, 255, 255);"></span>
-                                        <span id="1F917" class="j j1F917 A" title="Hugging Face Emoji" data-s="🤗"
-                                            🤗style="border: 1px solid rgb(255, 255, 255);"></span>
+                                            data-s="🙂">🙂</span>
+                                        <span id="1F917" class="j j1F917 A" title="Hugging Face Emoji" 
+                                            data-s="🤗">🤗</span>
                                         <span id="1F929" class="j j1F929 A" title="Star-struck Emoji"
                                             data-s="🤩">🤩</span>
                                         <span id="1F914" class="j j1F914 A" title="Thinking Face Emoji"
@@ -384,8 +383,6 @@
                                             data-s="🤑">🤑</span>
                                         <span id="1F632" class="j j1F632 A" title="Astonished Face Emoji"
                                             data-s="😲">😲</span>
-                                        <span id="2639" class="j j2639 A" title="Frowning Face Emoji"
-                                            data-s="☹">☹</span>
                                         <span id="1F641" class="j j1F641 A" title="Slightly Frowning Face Emoji"
                                             data-s="🙁">🙁</span>
                                         <span id="1F616" class="j j1F616 A" title="Confounded Face Emoji"
@@ -418,8 +415,8 @@
                                             data-s="😱">😱</span>
                                         <span id="1F633" class="j j1F633 A" title="Flushed Face Emoji"
                                             data-s="😳">😳</span>
-                                        <span id="1F92A" class="j j1F92A A" title="Crazy Face Emoji" data-s="🤪"
-                                            🤪style="border: 1px solid rgb(255, 255, 255);"></span>
+                                        <span id="1F92A" class="j j1F92A A" title="Crazy Face Emoji" 
+                                            data-s="🤪">🤪</span>
                                         <span id="1F635" class="j j1F635 A" title="Dizzy Face Emoji"
                                             data-s="😵">😵</span>
                                         <span id="1F621" class="j j1F621 A" title="Pouting Face Emoji"
@@ -746,8 +743,8 @@
                                     </path>
                                 </svg>
                             </div>
-                            <textarea type="text" class="w-100 text_message_box" name="text_message_box"
-                                id="text_message_box" data-id=""></textarea>
+                            <input type="text" class="w-100 text_message_box" name="text_message_box"
+                                id="text_message_box" data-id="" />
                             <div style="cursor: pointer;" class="text-nowrap div_icons_footer_bar"
                                 onclick="btnSendMessage()">
                                 <svg viewBox="0 0 24 24" width="24" height="24" class="">
@@ -863,6 +860,26 @@
                     var $t = $(this);
                     for (var d = 0; d < data.length; ++d) {
                         if ($t.is(":contains('" + data[d] + "')")) {
+                            return true;
+                        }
+                    }
+                    return false;
+                }).show();
+            })
+
+            $('#content_emojis .filter_emojis').keyup(function(e){
+                var data = this.value.split(" ");
+                var jo = $("#smileys_pan span");
+                if (this.value == "") {
+                    jo.show();
+                    return;
+                }
+
+                jo.hide();
+
+                jo.filter(function (i, v) {
+                    for (var d = 0; d < data.length; ++d) {
+                        if ($(this).attr('title').indexOf(data[d]) >= 0) {
                             return true;
                         }
                     }
@@ -1255,6 +1272,11 @@
 
             function showEmojis() {
                 $('div#content_emojis').toggle();
+                if($('.div_icons_footer_bar_emojis').hasClass( "active" )){
+                    $('.div_icons_footer_bar_emojis').removeClass( "active" );
+                }else{
+                    $('.div_icons_footer_bar_emojis').addClass( "active" );
+                }
             }
 
             $(function () {
@@ -1285,7 +1307,7 @@
                 $('.j').click(function (e) {
                     e.preventDefault();
                     var value = $('#text_message_box').val()
-                    $('#text_message_box').val(value +""+$(this).attr('data-s'))
+                    $('#text_message_box').val(value + "" + $(this).attr('data-s'))
                 })
 
             })
