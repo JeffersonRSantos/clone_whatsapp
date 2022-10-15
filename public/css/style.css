@@ -4,6 +4,7 @@
     --color-bg-v3: #2a3942;
     --color-bg-v4: #202c33;
     --color-bg-v5: #00a884;
+    --color-white-default: #aebac1;
 }
 
 * {
@@ -340,6 +341,7 @@ nav#sidebarMenu {
     height: calc(100vh - 59px);
     clear: both;
     position: relative;
+    border-right: 1px solid rgb(59 66 70);
 }
 
 .header_top_main {
@@ -348,7 +350,7 @@ nav#sidebarMenu {
 }
 
 .navbar-brand {
-    padding-top: .75rem;
+    padding-top: .75rem !important;
     padding-bottom: .75rem;
     font-size: 1rem;
 }
@@ -973,4 +975,63 @@ div#content_emojis h6.title_type_emojis {
     font-weight: 500;
     padding-left: 5px;
     color: var(--color-bg-v3);
+}
+
+div#show_profile{
+    position: absolute;
+    display: none;
+    background-color: var(--color-bg-v1);
+    height: 100%;
+    z-index: 10;
+    width: 100%;
+    top: 0;
+}
+
+div#show_profile .header{
+    background-color: var(--color-bg-v2);
+    border-right: 1px solid rgba(134,150,160,0.15);
+}
+
+div#show_profile .header .title-perfil{
+    color: var(--color-white-default);
+    font-size: 18px;
+    font-weight: 500;
+}
+
+div#show_profile .img_profile{
+    padding: 30px 0;
+}
+
+div#show_profile .img_profile img{
+    width: 70%;
+}
+
+div#show_profile .label{
+    color: #008069;
+}
+
+div#show_profile input{
+    background-color: transparent !important;
+    color: #d1d7db;
+    font-size: 16px;
+    border: none;
+    outline: none;
+    box-shadow: none;
+    padding-left: 0;
+    transition: .2s ease-in-out;
+    border-radius: 0;
+}
+
+div#show_profile input:focus:focus-visible{
+    border-bottom: 2px solid #008069;
+}
+
+div#show_profile .input-group-text{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+}
+
+div#show_profile .description{
+    color: var(--color-white-default);
 }

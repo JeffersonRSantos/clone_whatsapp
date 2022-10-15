@@ -36,6 +36,8 @@ io.on('connection', socket => {
     });
 
     socket.on('send message', async data => {
+      console.log('data')
+      console.log(data)
       const search = await knex('tb_users').select('username', 'id').where('id', data.id_author)
       const search_historic = await knex('tb_historic_user_message')
         .select('id')
